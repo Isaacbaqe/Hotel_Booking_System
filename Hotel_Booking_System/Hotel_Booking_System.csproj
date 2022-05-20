@@ -45,6 +45,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -112,12 +118,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -170,11 +170,17 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RoomsController.cs" />
+    <Compile Include="Controllers\Room_UsageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205161936134_InitialCreate.cs" />
+    <Compile Include="Migrations\202205161936134_InitialCreate.Designer.cs">
+      <DependentUpon>202205161936134_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Guest.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Room.cs" />
@@ -187,12 +193,194 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\font-awesome.min.css" />
+    <Content Include="css\responsive.css" />
+    <Content Include="css\style %28Mohammad Rocky%27s conflicted copy 2018-05-08%29.css" />
+    <Content Include="css\style.css" />
+    <Content Include="css\_elements.css" />
+    <Content Include="css\_footer.css" />
+    <Content Include="css\_testimonial.css" />
+    <Content Include="css\_variables.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="image\about_banner.jpg" />
+    <Content Include="image\about_bg.jpg" />
+    <Content Include="image\banner\banner-1.jpg" />
+    <Content Include="image\banner\banner-2.jpg" />
+    <Content Include="image\banner_bg.jpg" />
+    <Content Include="image\blog\add.jpg" />
+    <Content Include="image\blog\author.png" />
+    <Content Include="image\blog\blog-1.jpg" />
+    <Content Include="image\blog\blog-2.jpg" />
+    <Content Include="image\blog\blog-3.jpg" />
+    <Content Include="image\blog\c1.jpg" />
+    <Content Include="image\blog\c2.jpg" />
+    <Content Include="image\blog\c3.jpg" />
+    <Content Include="image\blog\c4.jpg" />
+    <Content Include="image\blog\c5.jpg" />
+    <Content Include="image\blog\c6.jpg" />
+    <Content Include="image\blog\cat-post\cat-post-1.jpg" />
+    <Content Include="image\blog\cat-post\cat-post-2.jpg" />
+    <Content Include="image\blog\cat-post\cat-post-3.jpg" />
+    <Content Include="image\blog\feature-img1.jpg" />
+    <Content Include="image\blog\main-blog\m-blog-1.jpg" />
+    <Content Include="image\blog\main-blog\m-blog-2.jpg" />
+    <Content Include="image\blog\main-blog\m-blog-3.jpg" />
+    <Content Include="image\blog\main-blog\m-blog-4.jpg" />
+    <Content Include="image\blog\main-blog\m-blog-5.jpg" />
+    <Content Include="image\blog\next.jpg" />
+    <Content Include="image\blog\post-img1.jpg" />
+    <Content Include="image\blog\post-img2.jpg" />
+    <Content Include="image\blog\post1.jpg" />
+    <Content Include="image\blog\post2.jpg" />
+    <Content Include="image\blog\post3.jpg" />
+    <Content Include="image\blog\post4.jpg" />
+    <Content Include="image\blog\prev.jpg" />
+    <Content Include="image\blog\s-img.jpg" />
+    <Content Include="image\elements\a.jpg" />
+    <Content Include="image\elements\a2.jpg" />
+    <Content Include="image\elements\d.jpg" />
+    <Content Include="image\elements\disabled-check.png" />
+    <Content Include="image\elements\disabled-radio.png" />
+    <Content Include="image\elements\f1.jpg" />
+    <Content Include="image\elements\f2.jpg" />
+    <Content Include="image\elements\f3.jpg" />
+    <Content Include="image\elements\f4.jpg" />
+    <Content Include="image\elements\f5.jpg" />
+    <Content Include="image\elements\f6.jpg" />
+    <Content Include="image\elements\f7.jpg" />
+    <Content Include="image\elements\f8.jpg" />
+    <Content Include="image\elements\g1.jpg" />
+    <Content Include="image\elements\g2.jpg" />
+    <Content Include="image\elements\g3.jpg" />
+    <Content Include="image\elements\g4.jpg" />
+    <Content Include="image\elements\g5.jpg" />
+    <Content Include="image\elements\g6.jpg" />
+    <Content Include="image\elements\g7.jpg" />
+    <Content Include="image\elements\g8.jpg" />
+    <Content Include="image\elements\primary-check.png" />
+    <Content Include="image\elements\primary-radio.png" />
+    <Content Include="image\elements\success-check.png" />
+    <Content Include="image\elements\success-radio.png" />
+    <Content Include="image\elements\user1.png" />
+    <Content Include="image\elements\user2.png" />
+    <Content Include="image\facilites_bg.jpg" />
+    <Content Include="image\favicon.png" />
+    <Content Include="image\gallery\01-1.jpg" />
+    <Content Include="image\gallery\01.jpg" />
+    <Content Include="image\gallery\02-1.jpg" />
+    <Content Include="image\gallery\02.jpg" />
+    <Content Include="image\gallery\03-1.jpg" />
+    <Content Include="image\gallery\03.jpg" />
+    <Content Include="image\gallery\04.jpg" />
+    <Content Include="image\gallery\05.jpg" />
+    <Content Include="image\gallery\06.jpg" />
+    <Content Include="image\instagram\Image-01.jpg" />
+    <Content Include="image\instagram\Image-02.jpg" />
+    <Content Include="image\instagram\Image-03.jpg" />
+    <Content Include="image\instagram\Image-04.jpg" />
+    <Content Include="image\instagram\Image-05.jpg" />
+    <Content Include="image\instagram\Image-06.jpg" />
+    <Content Include="image\instagram\Image-07.jpg" />
+    <Content Include="image\instagram\Image-08.jpg" />
+    <Content Include="image\logo-2.png" />
+    <Content Include="image\Logo.png" />
+    <Content Include="image\room1.jpg" />
+    <Content Include="image\room2.jpg" />
+    <Content Include="image\room3.jpg" />
+    <Content Include="image\room4.jpg" />
+    <Content Include="image\testtimonial-1.jpg" />
+    <Content Include="image\testtimonial-2.jpg" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\contact.js" />
+    <Content Include="js\custom.js" />
+    <Content Include="js\gmaps.min.js" />
+    <Content Include="js\jquery-3.2.1.min.js" />
+    <Content Include="js\jquery.ajaxchimp.min.js" />
+    <Content Include="js\jquery.form.js" />
+    <Content Include="js\jquery.validate.min.js" />
+    <Content Include="js\mail-script.js" />
+    <Content Include="js\popper.js" />
+    <Content Include="js\stellar.js" />
+    <Content Include="royal-Doc\css\font-awesome.min.css" />
+    <Content Include="royal-Doc\css\main.css" />
+    <Content Include="royal-Doc\css\normalize.min.css" />
+    <Content Include="royal-Doc\fonts\fontawesome-webfont.svg" />
+    <Content Include="royal-Doc\img\logo.png" />
+    <Content Include="royal-Doc\index.html" />
+    <Content Include="royal-Doc\js\custom.js" />
+    <Content Include="royal-Doc\js\jquery-1.11.0.min.js" />
+    <Content Include="royal-Doc\js\jquery.nav.js" />
+    <Content Include="royal-Doc\syntax-highlighter\scripts\shAutoloader.js" />
+    <Content Include="royal-Doc\syntax-highlighter\scripts\shBrushAppleScript.js" />
+    <Content Include="royal-Doc\syntax-highlighter\scripts\shBrushAS3.js" />
+    <Content Include="royal-Doc\syntax-highlighter\scripts\shBrushBash.js" />
+    <Content Include="royal-Doc\syntax-highlighter\scripts\shBrushColdFusion.js" />
+    <Content Include="royal-Doc\syntax-highlighter\scripts\shBrushCpp.js" />
+    <Content Include="royal-Doc\syntax-highlighter\scripts\shBrushCSharp.js" />
+    <Content Include="royal-Doc\syntax-highlighter\scripts\shBrushCss.js" />
+    <Content Include="royal-Doc\syntax-highlighter\scripts\shBrushDelphi.js" />
+    <Content Include="royal-Doc\syntax-highlighter\scripts\shBrushDiff.js" />
+    <Content Include="royal-Doc\syntax-highlighter\scripts\shBrushErlang.js" />
+    <Content Include="royal-Doc\syntax-highlighter\scripts\shBrushGroovy.js" />
+    <Content Include="royal-Doc\syntax-highlighter\scripts\shBrushJava.js" />
+    <Content Include="royal-Doc\syntax-highlighter\scripts\shBrushJavaFX.js" />
+    <Content Include="royal-Doc\syntax-highlighter\scripts\shBrushJScript.js" />
+    <Content Include="royal-Doc\syntax-highlighter\scripts\shBrushPerl.js" />
+    <Content Include="royal-Doc\syntax-highlighter\scripts\shBrushPhp.js" />
+    <Content Include="royal-Doc\syntax-highlighter\scripts\shBrushPlain.js" />
+    <Content Include="royal-Doc\syntax-highlighter\scripts\shBrushPowerShell.js" />
+    <Content Include="royal-Doc\syntax-highlighter\scripts\shBrushPython.js" />
+    <Content Include="royal-Doc\syntax-highlighter\scripts\shBrushRuby.js" />
+    <Content Include="royal-Doc\syntax-highlighter\scripts\shBrushSass.js" />
+    <Content Include="royal-Doc\syntax-highlighter\scripts\shBrushScala.js" />
+    <Content Include="royal-Doc\syntax-highlighter\scripts\shBrushSql.js" />
+    <Content Include="royal-Doc\syntax-highlighter\scripts\shBrushVb.js" />
+    <Content Include="royal-Doc\syntax-highlighter\scripts\shBrushXml.js" />
+    <Content Include="royal-Doc\syntax-highlighter\scripts\shCore.js" />
+    <Content Include="royal-Doc\syntax-highlighter\scripts\shLegacy.js" />
+    <Content Include="royal-Doc\syntax-highlighter\styles\shCore.css" />
+    <Content Include="royal-Doc\syntax-highlighter\styles\shCoreDefault.css" />
+    <Content Include="royal-Doc\syntax-highlighter\styles\shCoreDjango.css" />
+    <Content Include="royal-Doc\syntax-highlighter\styles\shCoreEclipse.css" />
+    <Content Include="royal-Doc\syntax-highlighter\styles\shCoreEmacs.css" />
+    <Content Include="royal-Doc\syntax-highlighter\styles\shCoreFadeToGrey.css" />
+    <Content Include="royal-Doc\syntax-highlighter\styles\shCoreMDUltra.css" />
+    <Content Include="royal-Doc\syntax-highlighter\styles\shCoreMidnight.css" />
+    <Content Include="royal-Doc\syntax-highlighter\styles\shCoreRDark.css" />
+    <Content Include="royal-Doc\syntax-highlighter\styles\shThemeDefault.css" />
+    <Content Include="royal-Doc\syntax-highlighter\styles\shThemeDjango.css" />
+    <Content Include="royal-Doc\syntax-highlighter\styles\shThemeEclipse.css" />
+    <Content Include="royal-Doc\syntax-highlighter\styles\shThemeEmacs.css" />
+    <Content Include="royal-Doc\syntax-highlighter\styles\shThemeFadeToGrey.css" />
+    <Content Include="royal-Doc\syntax-highlighter\styles\shThemeMDUltra.css" />
+    <Content Include="royal-Doc\syntax-highlighter\styles\shThemeMidnight.css" />
+    <Content Include="royal-Doc\syntax-highlighter\styles\shThemeRDark.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="css\style.css %28Mohammad Rocky%27s conflicted copy 2018-05-08%29.map" />
+    <Content Include="css\style.css.map" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="image\banner\banner-2_tmp18321" />
+    <Content Include="image\elements\_DS_Store" />
+    <Content Include="image\favicon_tmp18091" />
+    <Content Include="royal-Doc\css\_DS_Store" />
+    <Content Include="royal-Doc\fonts\fontawesome-webfont.eot" />
+    <Content Include="royal-Doc\fonts\fontawesome-webfont.ttf" />
+    <Content Include="royal-Doc\fonts\fontawesome-webfont.woff" />
+    <Content Include="royal-Doc\fonts\FontAwesome.otf" />
+    <Content Include="royal-Doc\fonts\_DS_Store" />
+    <Content Include="royal-Doc\img\_DS_Store" />
+    <Content Include="royal-Doc\js\_DS_Store" />
+    <Content Include="royal-Doc\syntax-highlighter\_DS_Store" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -204,6 +392,25 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="vendors\bootstrap-datepicker\bootstrap-datetimepicker.min.css" />
+    <Content Include="vendors\bootstrap-datepicker\bootstrap-datetimepicker.min.js" />
+    <Content Include="vendors\bootstrap-datepicker\bootstrap-select.css" />
+    <Content Include="vendors\bootstrap-datepicker\bootstrap-select.js" />
+    <Content Include="vendors\imagesloaded\imagesloaded.pkgd.min.js" />
+    <Content Include="vendors\isotope\isotope-min.js" />
+    <Content Include="vendors\lightbox\simpleLightbox.css" />
+    <Content Include="vendors\lightbox\simpleLightbox.min.js" />
+    <Content Include="vendors\linericon\fonts\Linearicons-Free.svg" />
+    <Content Include="vendors\linericon\style.css" />
+    <Content Include="vendors\nice-select\css\nice-select.css" />
+    <Content Include="vendors\nice-select\css\style.css" />
+    <Content Include="vendors\nice-select\js\jquery.nice-select.js" />
+    <Content Include="vendors\nice-select\js\jquery.nice-select.min.js" />
+    <Content Include="vendors\owl-carousel\assets\ajax-loader.gif" />
+    <Content Include="vendors\owl-carousel\assets\animated.css" />
+    <Content Include="vendors\owl-carousel\assets\owl.carousel.css" />
+    <Content Include="vendors\owl-carousel\owl.carousel.min.css" />
+    <Content Include="vendors\owl-carousel\owl.carousel.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -238,6 +445,36 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Rooms\Create.cshtml" />
+    <Content Include="Views\Rooms\Delete.cshtml" />
+    <Content Include="Views\Rooms\Details.cshtml" />
+    <Content Include="Views\Rooms\Edit.cshtml" />
+    <Content Include="Views\Rooms\Index.cshtml" />
+    <Content Include="Views\Room_Usage\Create.cshtml" />
+    <Content Include="Views\Room_Usage\Delete.cshtml" />
+    <Content Include="Views\Room_Usage\Details.cshtml" />
+    <Content Include="Views\Room_Usage\Edit.cshtml" />
+    <Content Include="Views\Room_Usage\Index.cshtml" />
+    <Content Include="scss\style.scss" />
+    <Content Include="scss\_accomodation.scss" />
+    <Content Include="scss\_banner.scss" />
+    <Content Include="scss\_blog.scss" />
+    <Content Include="scss\_button.scss" />
+    <Content Include="scss\_contact.scss" />
+    <Content Include="scss\_elements.scss" />
+    <Content Include="scss\_footer.scss" />
+    <Content Include="scss\_header.scss" />
+    <Content Include="scss\_predefine.scss" />
+    <Content Include="scss\_testimonial.scss" />
+    <Content Include="scss\_variables.scss" />
+    <Content Include="vendors\linericon\fonts\Linearicons-Free.eot" />
+    <Content Include="vendors\linericon\fonts\Linearicons-Free.ttf" />
+    <Content Include="vendors\linericon\fonts\Linearicons-Free.woff" />
+    <Content Include="vendors\linericon\fonts\Linearicons-Free.woff2" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Rooms\SingleRoom.cshtml" />
+    <Content Include="Views\Rooms\DoubleRoom.cshtml" />
+    <Content Include="Views\Rooms\SuiteRoom.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -254,6 +491,11 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202205161936134_InitialCreate.resx">
+      <DependentUpon>202205161936134_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

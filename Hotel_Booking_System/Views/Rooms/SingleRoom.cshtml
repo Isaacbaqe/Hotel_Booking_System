@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Hotel_Booking_System.Models.Room>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Room_number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Room_type)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Room_loca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Room_status)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.Room_number)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Room_type)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Room_loca)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Room_status)
+            </td>
+              
+            <td>
+                <a href="~/Room_Usage/Create/@item.Room_number" class="btn theme_btn button_hover">Booking Now</a>
+            </td>
+        </tr>
+    }
+
+</table>
+

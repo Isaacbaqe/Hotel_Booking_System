@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Hotel_Booking_System.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Hotel_Booking_System.Controllers
 {
@@ -55,9 +56,40 @@ namespace Hotel_Booking_System.Controllers
         //
         // GET: /Account/Login
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public async Task<ActionResult> Login(string returnUrl)
+
         {
             ViewBag.ReturnUrl = returnUrl;
+            ApplicationDbContext dbContext = new ApplicationDbContext();
+            if (dbContext.Roles.SingleOrDefault(m => m.Name == "Administrator") == null)
+            {
+                dbContext.Roles.Add(new IdentityRole { Name = "Administrator" });
+                dbContext.SaveChanges();
+            }
+            if (dbContext.Roles.SingleOrDefault(m => m.Name == "Guest") == null)
+            {
+                dbContext.Roles.Add(new IdentityRole { Name = "Guest" });
+                dbContext.SaveChanges();
+            }
+            if(this.UserManager.FindByName("Administrator")==null)
+            {
+                var user = new ApplicationUser
+                {
+                    UserName = "Administrator",
+                    Email = "isaac@gmail.com",
+                    PhoneNumber = "+201275635275",
+                    Isactive = true,
+                    Date = DateTime.Now
+                };
+                var role = dbContext.Roles.Where(m => m.Name == "Administrator").SingleOrDefault();
+                var result = await this.UserManager.CreateAsync(user, "Password 1");
+                if(result.Succeeded)
+                {
+                    dbContext.Users.SingleOrDefault(x => x.UserName == "Administrator").Roles.Add(new IdentityUserRole { RoleId = role.Id });
+                    dbContext.SaveChanges();
+                }
+            }
+
             return View();
         }
 
@@ -151,7 +183,7 @@ namespace Hotel_Booking_System.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email ,Date=DateTime.Now};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

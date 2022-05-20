@@ -1,7 +1,79 @@
-﻿@{
-    ViewBag.Title = "About";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+﻿
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="/image/favicon.png" type="image/png">
+    <title>Royal Hotel</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/vendors/linericon/style.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="/vendors/nice-select/css/nice-select.css">
+    <link rel="stylesheet" href="/vendors/owl-carousel/owl.carousel.min.css">
+    <!-- main css -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<br />
 
-<p>Use this area to provide additional information.</p>
+
+
+
+<style>
+    .Rooms
+    {
+       display:inline-block;
+      position:relative;
+      left:140px;
+        
+    }
+</style>
+
+
+
+<section class="accomodation_area section_gap ">
+    <div class="section_title text-center">
+        <h2 class="title_color">Hotel Rooms</h2>
+        <p>We all live in an age that belongs to the young at heart. Life that is becoming extremely fast, </p>
+    </div>
+    <div class="container Rooms">
+        <div class="row mb_30">
+            <div class="col-lg-3 col-sm-6">
+                <div class="accomodation_item text-center">
+                    <div class="hotel_img">
+                        <img src="/image/room1.jpg" alt="">
+                        <a href="~/Rooms/DoubleRoom" class="btn theme_btn button_hover">Book Now</a>
+                    </div>
+                    <a href="~/Rooms/DoubleRoom"><h4 class="sec_h4">Double Deluxe Room</h4></a>
+                    <h5>$250<small>/night</small></h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="accomodation_item text-center">
+                    <div class="hotel_img">
+                        <img src="/image/room2.jpg" alt="">
+                        
+                        <a href="~/Rooms/SingleRoom" class="btn theme_btn button_hover">Book Now</a>
+                    </div>
+                    <a href="~/Rooms/SingleRoom"><h4 class="sec_h4">Single Deluxe Room</h4></a>
+                    <h5>$200<small>/night</small></h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="accomodation_item text-center">
+                    <div class="hotel_img">
+                        <img src="/image/room3.jpg" alt="">
+                        <a href="~/Rooms/SuiteRoom" class="btn theme_btn button_hover">Book Now</a>
+                    </div>
+                    <a href="~/Rooms/SuiteRoom"><h4 class="sec_h4">Honeymoon Suit</h4></a>
+                    <h5>$750<small>/night</small></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
